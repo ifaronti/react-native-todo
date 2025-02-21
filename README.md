@@ -6,7 +6,7 @@ Scribbles And Skills Sharpening With React Native
 ## Screenshots:
 
 <div >
-    <img src="./image1.PNG" width="400px" height="800px"/> 
-    <img src="./image2.PNG" width="400px" height="800px"/> 
-    <img src="./image3.PNG" width="400px" height="800px"/> 
+    <img src="./image1.PNG" width="400px" height="600px"/> 
+    <img src="./image2.PNG" width="400px" height="600px"/> 
+    <img src="./image3.PNG" width="400px" height="600px"/> 
 </div>
