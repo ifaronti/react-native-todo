@@ -1,4 +1,4 @@
-import { FlatList, View, Alert} from "react-native";
+import { FlatList, View, Alert, useColorScheme} from "react-native";
 import { useEffect, useState } from "react";
 import { data } from "@/constants/Data";
 import TodoForm from "@/components/todo-form";
@@ -13,6 +13,8 @@ export default function Todos() {
     const [newTodo, setNewTodo] = useState('')
     const [showModal, setShowModal] = useState(false)
     const [currentId, setCurrentId] = useState(0)
+
+    const colorScheme = useColorScheme()
 
     function addTodo() {
 
@@ -57,10 +59,16 @@ export default function Todos() {
         setTodos(data)
     }, [])
 
-    const separator = <View style={{backgroundColor:'white', marginVertical:10, width:'100%', height:0.3}} />
+    const separator = <View style={{backgroundColor:colorScheme === 'dark'? 'white':'black', marginVertical:10, width:'100%', height:0.3}} />
     
     return (
-        <SafeAreaView style={{width:'100%', flex:1}}>
+        <SafeAreaView style={
+            {
+                width: '100%',
+                flex: 1,
+                backgroundColor: colorScheme === 'dark' ? '#203A43' : '#8e9eab'
+            }
+        }>
             <View style={{padding:20, flex:1, width:'100%'}}>
                 <TodoForm
                     handleChange={setNewTodo}

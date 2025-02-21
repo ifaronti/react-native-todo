@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
         flexDirection:'row',
         width: '100%',
         height: 30,
-        gap: 15,
+        gap: 5,
         position: 'relative'
         
     },
@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         borderColor: '#E0E4EA',
         borderWidth: 0.2,
-        padding: 10,
+        padding: 20,
         color: 'white'
     },
 

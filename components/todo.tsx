@@ -1,4 +1,4 @@
-import { View, Text, Pressable, StyleSheet } from "react-native";
+import { View, Text, Pressable, StyleSheet, useColorScheme } from "react-native";
 import Ionicons from '@expo/vector-icons/Ionicons'
 
 type props = {
@@ -8,17 +8,38 @@ type props = {
 
 }
 
+
+
 type todo = {text:string, isCompleted:boolean, id:number}
 
-export default function Todo({todo, delete_todo, update_todo}:props) {
+export default function Todo({ todo, delete_todo, update_todo }: props) {
+    
+    const colorScheme = useColorScheme()
     
     return (
         <View style={styles.container}>
             <Pressable style={styles.button} onPress={()=>update_todo(todo.id)}>
-                <Text style={todo.isCompleted? styles.completeText: styles.text}>
+                <Text style={
+                    {
+                        color: colorScheme === 'dark' ?
+                            'white'
+                            :
+                            todo.isCompleted ?
+                                'gray'
+                                :
+                                'black',
+                        textDecorationLine:
+                            todo.isCompleted ?
+                                'line-through'
+                                :
+                                'none'
+                    }
+                }
+                >
                     {todo.text}
                 </Text>
             </Pressable>
+
             <Pressable style={styles.delBtn} onPress={()=>delete_todo(todo.id)}>
                 
                 <Ionicons
@@ -52,10 +73,6 @@ const styles = StyleSheet.create({
         color:'#E0E4EA'
     },
     
-    text: {
-        color:'white'
-    },
-
     delBtn: {
         position:'relative'
     }
