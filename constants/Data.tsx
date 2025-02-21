@@ -1,6 +1,6 @@
+import { todoType } from "@/app"
 
-
-export const data = [
+export const data:todoType[] = [
     {
         text: 'Learn React Native',
         isCompleted: false,
@@ -52,3 +52,4 @@ export const data = [
         id:10
     },
 ]
+

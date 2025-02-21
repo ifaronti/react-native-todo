@@ -1,6 +1,6 @@
 import { StyleSheet, View, TextInput, Text, Pressable } from "react-native"
 import { Dispatch, SetStateAction, useState} from "react"
-import { NativeSyntheticEvent, TextInputChangeEventData } from "react-native"
+import { SafeAreaView } from "react-native"
 
 type props = {
     addTodo: () => void,
@@ -35,12 +35,12 @@ export default function TodoForm({addTodo, handleChange, value}:props) {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        flexDirection:'row',
+        flexDirection: 'row',
+        alignItems:'center',
         width: '100%',
-        height: 30,
         gap: 5,
-        position: 'relative'
-        
+        position: 'relative',
+        marginTop:40
     },
 
     textInput: {
@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
         borderColor: '#E0E4EA',
         borderWidth: 0.2,
         padding: 20,
-        color: 'white'
+        color: 'white',
     },
 
     button: {

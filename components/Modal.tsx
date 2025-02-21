@@ -1,46 +1,52 @@
-import { Modal, View, Text, Pressable } from "react-native";
+import { Modal, View, Text, Pressable, StyleSheet, SafeAreaView } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
-import { SafeAreaView } from "react-native-safe-area-context";
-import { Dispatch, SetStateAction, useState } from "react";
 
 type props = {
-    delete_todo: (id: number) => void,
-    id: number,
+    delete_todo: (id: number | null) => void,
+    id: number | null,
     showModal: boolean
-    cancel_action:Dispatch<SetStateAction<boolean>>
+    cancel_action:()=>void
 }
 
 export default function Action_Modal({ delete_todo, id, cancel_action, showModal }: props) {
 
-
-
     return (
-        <SafeAreaView style={{flex:1, alignItems:'center', justifyContent:'center'}}>
+        <SafeAreaView style={{flex:1, zIndex:10}}>
             <Modal
-                visible={showModal ? true : false}
+                visible={showModal}
                 transparent={true}
                 animationType="slide"
+                style={
+                    {
+                        opacity: 0.9,
+                        position: 'absolute',
+                        backgroundColor: 'black',
+                        display: 'flex',
+                        justifyContent:'center'
+                    }
+                }
             >
 
-                <View style={{padding:20}}>
+                <View style={styles.dialogBox}>
                         
-                    <Ionicons name="alert" size={24} color={'red'} />
+                    <Ionicons name="information-circle" size={24} color={'red'} />
                     
                     <Text style={{color:'white',}}>
-                        Are sure you want to delete this todo? Action can not be reversed.
+                        Are sure you want to delete this note? Action can not be reversed.
                     </Text>
 
-                    <View style={{ flex: 1, justifyContent: 'center', gap:10 }}>
+                    <View style={{ flex: 1, flexDirection:'row', justifyContent: 'center', gap:10 }}>
                             
-                            <Pressable
-                                
-                                onPress={()=>cancel_action}
-                            >
-                                <Text style={{color:'white',}}>Cancel</Text>
-                            </Pressable>
+                        <Pressable
+                            style={styles.dialogBtns}
+                            onPress={cancel_action}
+                        >
+                            <Text style={{color:'white',}}>Cancel</Text>
+                        </Pressable>
 
-                            <Pressable
-                                onPress={()=>delete_todo(id)}
+                        <Pressable
+                            style={styles.dialogBtns}
+                            onPress={()=>delete_todo(id)}
                             >
                                 <Text style={{color:'white',}}>Delete</Text>
                             </Pressable>
@@ -52,3 +58,34 @@ export default function Action_Modal({ delete_todo, id, cancel_action, showModal
         </SafeAreaView>
     )
 }
+
+const styles = StyleSheet.create({
+    dialogBox:{
+        padding: 20,
+        width: '80%',
+        display: 'flex',
+        alignItems: 'center',
+        height: '20%',
+        borderColor: 'white',
+        borderWidth: 0.2,
+        borderRadius: 10,
+        backgroundColor: '#485563',
+        flexDirection: 'column',
+        gap: 20,
+        alignSelf: 'center',
+        marginTop: 'auto',
+        marginBottom:'auto'
+        
+    },
+
+    dialogBtns:                                {
+        width: 100,
+        height: 40,
+        backgroundColor: '#635fc7',
+        display: 'flex',
+        alignItems: 'center',
+        'justifyContent': 'center',
+        borderRadius:10
+        
+    }
+})
